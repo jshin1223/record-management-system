@@ -33,7 +33,7 @@ The system comes with an easy-to-use Graphical User Interface (GUI) to add, modi
 
 This program requires Python 3.8 or higher and the following dependencies:
 
-**tkinter** included in Python installation
+**tkinter** included in Python installation.\
 **json** – A standard Python library that doesn’t require installation.
 
 ---
@@ -47,7 +47,7 @@ This program requires Python 3.8 or higher and the following dependencies:
 
 2. Run the Program: Go to the src/ directory and type:
 
-python main.py
+   python main.py
 
 ---
 
