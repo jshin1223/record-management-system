@@ -1,0 +1,27 @@
+[
+    {
+        "ID": 1,
+        "Type": "Airline",
+        "Company Name": "Delta Airlines"
+    },
+    {
+        "ID": 2,
+        "Type": "Airline",
+        "Company Name": "British Airways"
+    },
+    {
+        "ID": 3,
+        "Type": "Airline",
+        "Company Name": "United Airlines"
+    },
+    {
+        "ID": 4,
+        "Type": "Airline",
+        "Company Name": "Virgin Atlantic"
+    },
+    {
+        "ID": 5,
+        "Type": "Airline",
+        "Company Name": "Lufthansa"
+    }
+]
