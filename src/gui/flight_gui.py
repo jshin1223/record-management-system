@@ -1,5 +1,5 @@
 """
-This module contains the GUI forf the Record Management System for managing flight records.
+This module contains the GUI for the Record Management System for managing flight records.
 
 It allows users to:
 - Add new flight records with client ID, airline ID, flight date and starting and ending cities.
