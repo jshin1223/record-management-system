@@ -45,17 +45,7 @@ This program requires Python 3.8 or higher and the following dependencies:
    git clone <repository_url>
    cd <repository_directory>
 
-2. Ensure data Directory Exists: Make sure that in the src/ folder there is a data/ directory. If not, create it:
-
-mkdir src/data
-
-3. Create JSON Files: Copy the required JSON files with empty content filled out as an array ([]) as their content.
-
-echo "[]" > src/data/clients.json
-echo "[]" > src/data/airlines.json
-echo "[]" > src/data/flights.json
-
-4. Run the Program: Go to the src/ directory and type:
+2. Run the Program: Go to the src/ directory and type:
 
 python main.py
 
