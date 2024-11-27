@@ -61,7 +61,7 @@ def manage_client_gui():
     country_entry = tk.Entry(window)  # Entry field for Country
     country_entry.grid(row=7, column=1, padx=10, pady=5)
 
-    tk.Label(window, text="Phone Number:").grid(row=8, column=0, padx=10, pady=5)  # Label for Phone Number
+    tk.Label(window, text="Phone Number (CountryCode-AreaCode-Number):").grid(row=8, column=0, padx=10, pady=5)  # Label for Phone Number
     phone_entry = tk.Entry(window)  # Entry field for Phone Number
     phone_entry.grid(row=8, column=1, padx=10, pady=5)
 
