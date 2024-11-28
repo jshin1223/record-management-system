@@ -158,5 +158,10 @@
         "ID": 32,
         "Type": "Airline",
         "Company Name": "Korean Air"
+    },
+    {
+        "ID": 33,
+        "Type": "Airline",
+        "Company Name": "Air India"
     }
 ]
