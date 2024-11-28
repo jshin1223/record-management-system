@@ -23,5 +23,140 @@
         "ID": 5,
         "Type": "Airline",
         "Company Name": "Lufthansa"
+    },
+    {
+        "ID": 6,
+        "Type": "Airline",
+        "Company Name": "Turkish Airline"
+    },
+    {
+        "ID": 7,
+        "Type": "Airline",
+        "Company Name": "American Airlines"
+    },
+    {
+        "ID": 8,
+        "Type": "Airline",
+        "Company Name": "Southwest Airlines"
+    },
+    {
+        "ID": 9,
+        "Type": "Airline",
+        "Company Name": "Air Namibia"
+    },
+    {
+        "ID": 10,
+        "Type": "Airline",
+        "Company Name": "Air France"
+    },
+    {
+        "ID": 11,
+        "Type": "Airline",
+        "Company Name": "Qatar Airways"
+    },
+    {
+        "ID": 12,
+        "Type": "Airline",
+        "Company Name": "KLM Royal Dutch Airlines"
+    },
+    {
+        "ID": 13,
+        "Type": "Airline",
+        "Company Name": "Emirates Airlines"
+    },
+    {
+        "ID": 14,
+        "Type": "Airline",
+        "Company Name": "Swiss International Air Lines"
+    },
+    {
+        "ID": 15,
+        "Type": "Airline",
+        "Company Name": "Singapore Airlines"
+    },
+    {
+        "ID": 16,
+        "Type": "Airline",
+        "Company Name": "Cathay Pacific"
+    },
+    {
+        "ID": 17,
+        "Type": "Airline",
+        "Company Name": "ANA All Nippon Airways"
+    },
+    {
+        "ID": 18,
+        "Type": "Airline",
+        "Company Name": "Ethiopian Airlines"
+    },
+    {
+        "ID": 19,
+        "Type": "Airline",
+        "Company Name": "Kenya Airways"
+    },
+    {
+        "ID": 20,
+        "Type": "Airline",
+        "Company Name": "EgyptAir"
+    },
+    {
+        "ID": 21,
+        "Type": "Airline",
+        "Company Name": "Etihad Airways"
+    },
+    {
+        "ID": 22,
+        "Type": "Airline",
+        "Company Name": "South African Airways"
+    },
+    {
+        "ID": 23,
+        "Type": "Airline",
+        "Company Name": "Qantas Airways"
+    },
+    {
+        "ID": 24,
+        "Type": "Airline",
+        "Company Name": "Air Canada"
+    },
+    {
+        "ID": 25,
+        "Type": "Airline",
+        "Company Name": "Alitalia"
+    },
+    {
+        "ID": 26,
+        "Type": "Airline",
+        "Company Name": "Aeroflot Russian Airlines"
+    },
+    {
+        "ID": 27,
+        "Type": "Airline",
+        "Company Name": "Finnair"
+    },
+    {
+        "ID": 28,
+        "Type": "Airline",
+        "Company Name": "Scandinavian Airlines"
+    },
+    {
+        "ID": 29,
+        "Type": "Airline",
+        "Company Name": "Iberia Airlines"
+    },
+    {
+        "ID": 30,
+        "Type": "Airline",
+        "Company Name": "Austrian Airlines"
+    },
+    {
+        "ID": 31,
+        "Type": "Airline",
+        "Company Name": "Asiana Airlines"
+    },
+    {
+        "ID": 32,
+        "Type": "Airline",
+        "Company Name": "Korean Air"
     }
 ]

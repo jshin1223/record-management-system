@@ -120,13 +120,64 @@ def manage_client_gui():
         except ValueError:
             messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")  # Handle invalid input
 
-    # Add a button to save the client record
-    tk.Button(window, text="Save", command=save_client).grid(row=9, column=0, columnspan=2, pady=10)
+  # Delete client
+    def delete_client():
+        try:
+            client_id = int(search_entry.get())
+            if ClientRecord.delete(client_id):
+                messagebox.showinfo("Success", "Client record deleted!")
+            else:
+                messagebox.showinfo("Not Found", "No client found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+
+    # Update client
+    def update_client():
+        try:
+            client_id = int(search_entry.get())
+            updated_data = {
+                "Name": name_entry.get(),
+                "Address Line 1": address1_entry.get(),
+                "Address Line 2": address2_entry.get(),
+                "Address Line 3": address3_entry.get(),
+                "City": city_entry.get(),
+                "State": state_entry.get(),
+                "Zip Code": zip_entry.get(),
+                "Country": country_entry.get(),
+                "Phone Number": phone_entry.get(),
+            }
+            if ClientRecord.update(client_id, updated_data):
+                messagebox.showinfo("Success", "Client record updated!")
+            else:
+                messagebox.showinfo("Not Found", "No client found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+
+
+    # # Add a button to save the client record
+    # tk.Button(window, text="Save", command=save_client).grid(row=9, column=0, padx=10, pady=5)
+    # # Add a botton to perform the delete operation
+    # tk.Button(window, text="Delete", command=delete_client).grid(row=9, column=1, padx=10, pady=5)
+    # # Add a button to perform the delete operation
+    # tk.Button(window, text="Update", command=update_client).grid(row=9, column=2, padx=10, pady=5)
 
     # Add a label and entry field for searching client records by ID
-    tk.Label(window, text="Search by ID:").grid(row=11, column=0, padx=10, pady=5)
+    tk.Label(window, text="Input ID to delete, update, or search:").grid(row=11, column=0, padx=10, pady=5)
     search_entry = tk.Entry(window)  # Entry field for search input
     search_entry.grid(row=11, column=1, padx=10, pady=5)
 
-    # Add a button to perform the search operation
-    tk.Button(window, text="Search", command=search_client).grid(row=12, column=0, columnspan=2, pady=10)
+    # Buttons (aligned horizontally in the same row)
+    button_frame = tk.Frame(window)  # Create a frame to hold the buttons
+    button_frame.grid(row=912, column=0, columnspan=3, pady=10)  # Place the frame in the grid
+
+    tk.Button(button_frame, text="Save", command=save_client).grid(row=9, column=0, padx=10, pady=10)  # Save Button
+    tk.Button(button_frame, text="Delete", command=delete_client).grid(row=9, column=1, padx=10, pady=10)  # Delete Button
+    tk.Button(button_frame, text="Update", command=update_client).grid(row=9, column=2, padx=10, pady=10)  # Update Button
+    tk.Button(button_frame, text="Search", command=search_client).grid(row=9, column=3, padx=10, pady=10)  # Search Button
+    
+    # tk.Button(window, text="Search", command=search_client).grid(row=6, column=0, columnspan=3, pady=10)  # Search Button
+
+    
+    
+
+
