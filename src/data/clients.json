@@ -1558,5 +1558,18 @@
         "Zip Code": "600017",
         "Country": "India",
         "Phone Number": "91-44-01234567"
+    },
+    {
+        "ID": 121,
+        "Type": "Client",
+        "Name": "Sung Kim",
+        "Address Line 1": "100 Sangam-ro",
+        "Address Line 2": "Gangdong-gu",
+        "Address Line 3": "",
+        "City": "Seoul",
+        "State": "",
+        "Zip Code": "05296",
+        "Country": "South Korea",
+        "Phone Number": "82-010-55558888"
     }
 ]

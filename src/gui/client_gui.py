@@ -153,29 +153,22 @@ def manage_client_gui():
         except ValueError:
             messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
 
-
-    # # Add a button to save the client record
-    # tk.Button(window, text="Save", command=save_client).grid(row=9, column=0, padx=10, pady=5)
-    # # Add a botton to perform the delete operation
-    # tk.Button(window, text="Delete", command=delete_client).grid(row=9, column=1, padx=10, pady=5)
-    # # Add a button to perform the delete operation
-    # tk.Button(window, text="Update", command=update_client).grid(row=9, column=2, padx=10, pady=5)
+    # Save Button is placed right below the form. 
+    tk.Button(window, text="Save", command=save_client).grid(row=9, column=0, columnspan=3, pady=10)          
 
     # Add a label and entry field for searching client records by ID
     tk.Label(window, text="Input ID to delete, update, or search:").grid(row=11, column=0, padx=10, pady=5)
     search_entry = tk.Entry(window)  # Entry field for search input
     search_entry.grid(row=11, column=1, padx=10, pady=5)
 
-    # Buttons (aligned horizontally in the same row)
+    # Delete, Update, and Search Buttons are placed at the botrom of the window (aligned horizontally in the same row). 
     button_frame = tk.Frame(window)  # Create a frame to hold the buttons
     button_frame.grid(row=912, column=0, columnspan=3, pady=10)  # Place the frame in the grid
 
-    tk.Button(button_frame, text="Save", command=save_client).grid(row=9, column=0, padx=10, pady=10)  # Save Button
     tk.Button(button_frame, text="Delete", command=delete_client).grid(row=9, column=1, padx=10, pady=10)  # Delete Button
     tk.Button(button_frame, text="Update", command=update_client).grid(row=9, column=2, padx=10, pady=10)  # Update Button
     tk.Button(button_frame, text="Search", command=search_client).grid(row=9, column=3, padx=10, pady=10)  # Search Button
     
-    # tk.Button(window, text="Search", command=search_client).grid(row=6, column=0, columnspan=3, pady=10)  # Search Button
 
     
     
