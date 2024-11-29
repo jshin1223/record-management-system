@@ -65,6 +65,45 @@ class ClientRecord:
         # Save the updated records list
         ClientRecord.save_all(records)
 
+
+    @staticmethod
+    def delete(client_id):
+        """
+        Delete a client record by ID.
+
+        Args:
+            client_id (int): The ID of the client to delete.
+
+        Returns:
+            bool: True if the record was deleted, False if not found.
+        """
+        records = ClientRecord.load_all()
+        updated_records = [record for record in records if record["ID"] != client_id]
+        if len(records) == len(updated_records):
+            return False  # No record was deleted
+        ClientRecord.save_all(updated_records)
+        return True
+
+    @staticmethod
+    def update(client_id, updated_data):
+        """
+        Update a client record by ID.
+
+        Args:
+            client_id (int): The ID of the client to update.
+            updated_data (dict): The updated data for the client.
+
+        Returns:
+            bool: True if the record was updated, False if not found.
+        """
+        records = ClientRecord.load_all()
+        for record in records:
+            if record["ID"] == client_id:
+                record.update(updated_data)
+                ClientRecord.save_all(records)
+                return True
+        return False
+
     @staticmethod
     def search(client_id):
         """
