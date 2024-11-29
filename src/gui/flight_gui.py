@@ -24,7 +24,7 @@ def manage_flight_gui():
     # Create a new top-level window for managing flight records
     window = tk.Toplevel()
     window.title("Flight Records")  # Set the window title
-    window.geometry("600x400")  # Set the window size (width x height)
+    window.geometry("600x500")  # Set the window size (width x height)
 
     # Add labels and entry fields for flight data input
     tk.Label(window, text="Client ID:").grid(row=0, column=0, padx=10, pady=5)  # Label for Client ID
@@ -73,6 +73,71 @@ def manage_flight_gui():
         except Exception as e:
             messagebox.showerror("Error", str(e))  # Show error message if saving fails
 
-    # Add a button to save the flight record
-    tk.Button(window, text="Save", command=save_flight).grid(row=5, column=0, columnspan=2, pady=10)
-    # Position the save button and assign the save_flight function to it
+    def search_flight():
+        """
+        Search for a flight by ID and display the result.
+        """
+        try:
+            flight_id = int(flight_id_entry.get())
+            record = FlightRecord.search(flight_id)
+            if record:
+                result_text.delete(1.0, tk.END)
+                result_text.insert(tk.END, f"Flight Found:\n{record}")
+            else:
+                messagebox.showinfo("Not Found", "No flight found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+
+    def update_flight():
+        """
+        Update an existing flight record.
+        """
+        try:
+            flight_id = int(flight_id_entry.get())
+            updated_data = {
+                "Client_ID": int(client_id_entry.get()),
+                "Airline_ID": int(airline_id_entry.get()),
+                "Date/Time": date_entry.get(),
+                "Start City": start_city_entry.get(),
+                "End City": end_city_entry.get(),
+            }
+            if FlightRecord.update(flight_id, updated_data):
+                messagebox.showinfo("Success", "Flight record updated!")
+            else:
+                messagebox.showinfo("Not Found", "No flight found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter valid numeric IDs for Flight ID, Client ID, and Airline ID.")
+
+    def delete_flight():
+        """
+        Delete a flight record by ID.
+        """
+        try:
+            flight_id = int(flight_id_entry.get())
+            if FlightRecord.delete(flight_id):
+                messagebox.showinfo("Success", "Flight record deleted!")
+            else:
+                messagebox.showinfo("Not Found", "No flight found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+
+    # Textbox for displaying search results
+    result_text = tk.Text(window, height=8, width=50)
+    result_text.grid(row=6, column=0, columnspan=2, padx=10, pady=5)
+
+    # Flight ID Label and Entry
+    tk.Label(window, text="Flight ID:").grid(row=7, column=0, padx=10, pady=5, sticky="e")
+    flight_id_entry = tk.Entry(window)
+    flight_id_entry.grid(row=7, column=1, padx=10, pady=5, sticky="w")
+
+    # Helper message below Flight ID
+    tk.Label(window, text="Input Flight ID to search, update, or delete", font=("Arial", 9), fg="gray").grid(row=8, column=0, columnspan=2, pady=2, sticky="n")
+
+    # Add buttons for search, update, and delete
+    button_frame = tk.Frame(window)
+    button_frame.grid(row=9, column=0, columnspan=2, pady=10)
+
+    tk.Button(button_frame, text="Save", command=save_flight).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Search", command=search_flight).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Update", command=update_flight).pack(side="left", padx=5)
+    tk.Button(button_frame, text="Delete", command=delete_flight).pack(side="left", padx=5)

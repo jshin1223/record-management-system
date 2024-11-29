@@ -100,3 +100,41 @@ class FlightRecord:
             return 1
         # Return the maximum existing ID plus one
         return max(record.get("Flight_ID", 0) for record in records) + 1
+    
+    @staticmethod
+    def update(flight_id, updated_data):
+        """
+        Update an existing flight record.
+
+        Args:
+            flight_id (int): The ID of the flight to update.
+            updated_data (dict): A dictionary containing the updated flight information.
+
+        Returns:
+            bool: True if the record was updated, False if no matching record was found.
+        """
+        records = FlightRecord.load_all()
+        for record in records:
+            if record.get("Flight_ID") == flight_id:
+                record.update(updated_data)
+                FlightRecord.save_all(records)
+                return True
+        return False
+
+    @staticmethod
+    def delete(flight_id):
+        """
+        Delete a flight record by its ID.
+
+        Args:
+            flight_id (int): The ID of the flight to delete.
+
+        Returns:
+            bool: True if the record was deleted, False if no matching record was found.
+        """
+        records = FlightRecord.load_all()
+        updated_records = [record for record in records if record.get("Flight_ID") != flight_id]
+        if len(records) != len(updated_records):
+            FlightRecord.save_all(updated_records)
+            return True
+        return False

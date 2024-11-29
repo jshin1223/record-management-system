@@ -100,3 +100,58 @@ class AirlineRecord:
             return 1
         # Return the maximum existing ID plus one
         return max(record["ID"] for record in records) + 1
+    
+    @staticmethod
+    def search_by_name(company_name):
+        """
+        Search for an airline by company name.
+
+        Args:
+            company_name (str): The name of the airline company to search for.
+
+        Returns:
+            dict: The airline record if found, otherwise None.
+        """
+        records = AirlineRecord.load_all()
+        for record in records:
+            if record["Company Name"].lower() == company_name.lower():
+                return record
+        return None
+
+    @staticmethod
+    def update_airline(airline_id, new_data):
+        """
+        Update an existing airline record.
+
+        Args:
+            airline_id (int): The ID of the airline to update.
+            new_data (dict): A dictionary containing updated airline information.
+
+        Returns:
+            bool: True if the record was updated, False if not found.
+        """
+        records = AirlineRecord.load_all()
+        for record in records:
+            if record["ID"] == airline_id:
+                record.update(new_data)
+                AirlineRecord.save_all(records)
+                return True
+        return False
+
+    @staticmethod
+    def delete_airline(airline_id):
+        """
+        Delete an airline record by its ID.
+
+        Args:
+            airline_id (int): The ID of the airline to delete.
+
+        Returns:
+            bool: True if the record was deleted, False if not found.
+        """
+        records = AirlineRecord.load_all()
+        updated_records = [record for record in records if record["ID"] != airline_id]
+        if len(updated_records) < len(records):
+            AirlineRecord.save_all(updated_records)
+            return True
+        return False
