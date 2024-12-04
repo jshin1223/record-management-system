@@ -169,10 +169,16 @@ def manage_client_gui():
                 messagebox.showinfo("Success", "Client record updated!")
             else:
                 messagebox.showinfo("Not Found", "No client found with the given ID.")
-        except ValueError as e:
-            print(f"Debug: Error encountered - {e}")  # Debug print
-            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
-      
+        except ValueError as ve:
+                # Specific ValueError from the backend should show its error message
+                if "Invalid phone number format" in str(ve):
+                    messagebox.showerror("Error", str(ve))  # Show specific backend error
+                else:
+                    messagebox.showerror("Error", "Please enter a valid numeric ID.")  # Generic error
+        except Exception as e:
+            # Handle any other unforeseen exceptions
+            messagebox.showerror("Error", str(e))
+
     # Add a label and entry field for searching client records by ID
     tk.Label(window, text="Client ID:", anchor="e").grid(row=11, column=0, padx=(20, 5), pady=5, sticky="e")  # Adjusted padx and alignment
     search_entry = tk.Entry(window, justify="center")  # Entry field for search input
