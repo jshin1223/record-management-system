@@ -13,6 +13,7 @@ Classes:
 """
 
 import json  # Importing JSON module for reading and writing JSON files
+import re  # Regular expression for validation
 from conf.config import CLIENT_FILE  # Import configuration for the client data file path
 
 class ClientRecord:
@@ -51,13 +52,46 @@ class ClientRecord:
             json.dump(records, f, indent=4)
 
     @staticmethod
+    def is_duplicate_phone(phone_number):
+        """
+        Check for duplicate phone numbers in client records.
+
+        Args:
+            phone_number (str): The phone number to check.
+
+        Returns:
+            bool: True if a duplicate exists, False otherwise.
+        """
+        records = ClientRecord.load_all()
+        return any(record["Phone Number"] == phone_number for record in records)
+
+    @staticmethod
+    def is_valid_phone(phone_number):
+        """
+        Validate the format of the phone number.
+
+        Args:
+            phone_number (str): The phone number to validate.
+
+        Returns:
+            bool: True if the phone number format is valid, False otherwise.
+        """
+        pattern = r"^\d{1,3}-\d{1,3}-\d{4,10}$"
+        return bool(re.match(pattern, phone_number))
+
+    @staticmethod
     def create(client_data):
         """
-        Create a new client record and save it.
+        Create a new client record with validations that check pre-existing duplicate records. 
 
         Args:
             client_data (dict): A dictionary containing client information, including ID, name, and address.
         """
+        if not ClientRecord.is_valid_phone(client_data["Phone Number"]):
+            raise ValueError("Invalid phone number format. Follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).")
+        if ClientRecord.is_duplicate_phone(client_data["Phone Number"]):
+            raise ValueError("Duplicate phone number detected.")
+
         # Load existing records
         records = ClientRecord.load_all()
         # Append the new record to the list
@@ -87,7 +121,7 @@ class ClientRecord:
     @staticmethod
     def update(client_id, updated_data):
         """
-        Update a client record by ID.
+        Update a client record by ID with validations that check pre-existing duplicate records.
 
         Args:
             client_id (int): The ID of the client to update.
@@ -96,6 +130,11 @@ class ClientRecord:
         Returns:
             bool: True if the record was updated, False if not found.
         """
+        if not ClientRecord.is_valid_phone(updated_data["Phone Number"]):
+            raise ValueError("Invalid phone number format. Follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).")
+        if ClientRecord.is_duplicate_phone(updated_data["Phone Number"]):
+            raise ValueError("Duplicate phone number detected.")
+        
         records = ClientRecord.load_all()
         for record in records:
             if record["ID"] == client_id:

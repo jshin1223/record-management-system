@@ -66,7 +66,7 @@ def manage_client_gui():
     phone_entry.grid(row=8, column=1, padx=10, pady=5)
 
     # Helper message below the Phone Number field
-    tk.Label(window, text="Follow the format CountryCode-AreaCode-Number (i.e. 1-773-5435432)", 
+    tk.Label(window, text="Follow the format CountryCode-AreaCode-Number (e.g., 1-773-5435432)", 
          font=("Arial", 9), fg="gray").grid(row=9, column=0, columnspan=2, padx=10, pady=2)
 
     # Textbox for displaying search results

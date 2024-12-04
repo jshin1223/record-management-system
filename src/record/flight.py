@@ -13,6 +13,7 @@ Classes:
 """
 
 import json  # Importing JSON module for reading and writing JSON files
+from datetime import datetime  # Import for date and time validation
 from conf.config import FLIGHT_FILE  # Import configuration for the flight data file path
 
 class FlightRecord:
@@ -51,13 +52,33 @@ class FlightRecord:
             json.dump(records, f, indent=4)
 
     @staticmethod
+    def is_valid_date_time(date_time):
+        """
+        Validate the date and time format.
+
+        Args:
+            date_time (str): The date and time string to validate.
+
+        Returns:
+            bool: True if the format is valid, False otherwise.
+        """
+        try:
+            datetime.strptime(date_time, "%Y-%m-%d %H:%M")
+            return True
+        except ValueError:
+            return False
+
+    @staticmethod
     def create(flight_data):
         """
-        Create a new flight record and save it.
+        Create a new flight record with validations that check the correct format of date and time and save it.
 
         Args:
             flight_data (dict): A dictionary containing flight information, such as client ID, airline ID, date, start city, and end city.
         """
+        if not FlightRecord.is_valid_date_time(flight_data["Date/Time"]):
+            raise ValueError("Invalid date and time format. Use YYYY-MM-DD HH:MM.")
+        
         # Load existing records
         records = FlightRecord.load_all()
         # Append the new record to the list
@@ -104,7 +125,7 @@ class FlightRecord:
     @staticmethod
     def update(flight_id, updated_data):
         """
-        Update an existing flight record.
+        Update an existing flight record with validations that check the correct format of date and time.
 
         Args:
             flight_id (int): The ID of the flight to update.
@@ -113,6 +134,9 @@ class FlightRecord:
         Returns:
             bool: True if the record was updated, False if no matching record was found.
         """
+        if not FlightRecord.is_valid_date_time(updated_data["Date/Time"]):
+            raise ValueError("Invalid date and time format. Use YYYY-MM-DD HH:MM.")
+        
         records = FlightRecord.load_all()
         for record in records:
             if record.get("Flight_ID") == flight_id:

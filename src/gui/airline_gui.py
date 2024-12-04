@@ -26,29 +26,30 @@ def manage_airline_gui():
     window.title("Airline Records")  # Set the window title
     window.geometry("600x300")  # Set the window size (width x height)
 
-    # Add a label and entry field for the airline company name
-    tk.Label(window, text="Company Name:").grid(row=0, column=0, padx=10, pady=5)  # Label for the company name
-    company_name_entry = tk.Entry(window)  # Entry field for user input
-    company_name_entry.grid(row=0, column=1, padx=10, pady=5)  # Position the entry field
+    # Airline ID Label and Entry
+    tk.Label(window, text="Airline ID:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    airline_id_entry = tk.Entry(window)
+    airline_id_entry.grid(row=1, column=1, padx=10, pady=5)
+
+    # Company Name Label and Entry
+    tk.Label(window, text="Company Name:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    company_name_entry = tk.Entry(window)
+    company_name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+    # Add helper messages
+    tk.Label(window, text="Input Airline ID to update or delete airline records", font=("Arial", 9), fg="gray").grid(row=3, column=1, padx=10, pady=2, sticky="w")
+    tk.Label(window, text="Input company name to save or search airline records", font=("Arial", 9), fg="gray").grid(row=2, column=1, padx=10, pady=2, sticky="w")
 
     def save_airline():
         """
         Save a new airline record.
-
-        Collects user input for the company name, generates a unique ID, 
-        and saves the record using the AirlineRecord class.
-
-        If the operation succeeds, shows a success message.
-        If an error occurs, displays an error message.
         """
-        # Create a dictionary to store airline data
         airline_data = {
             "ID": AirlineRecord.generate_id(),  # Generate a unique ID for the airline
             "Type": "Airline",  # Specify the record type
             "Company Name": company_name_entry.get(),  # Get the company name from the entry field
         }
         try:
-            # Save the airline record using backend logic
             AirlineRecord.create(airline_data)
             messagebox.showinfo("Success", "Airline record created!")  # Show success message
         except Exception as e:
@@ -70,14 +71,34 @@ def manage_airline_gui():
         Update an existing airline record.
         """
         try:
-            airline_id = int(airline_id_entry.get())
-            new_name = company_name_entry.get()
+            if not airline_id_entry.get().strip():
+                messagebox.showerror("Error", "Airline ID cannot be empty. Please enter a valid ID.")
+                return
+            airline_id = int(airline_id_entry.get().strip())
+            new_name = company_name_entry.get().strip()
+
+            if not new_name:
+                messagebox.showerror("Error", "Company Name cannot be empty. Please provide a name.")
+                return
+
+            # Get the current airline record
+            current_record = AirlineRecord.search(airline_id)
+            if not current_record:
+                messagebox.showwarning("Not Found", "No airline found with the given ID.")
+                return
+            
+            # Check if the new name is the same as the existing name
+            if current_record["Company Name"].strip().lower() == new_name.lower():
+                messagebox.showinfo("No Changes", "No changes detected. The airline name is already up-to-date.")
+                return
+        
+            # Call the update function from AirlineRecord
             if AirlineRecord.update_airline(airline_id, {"Company Name": new_name}):
                 messagebox.showinfo("Success", "Airline record updated successfully!")
             else:
                 messagebox.showwarning("Not Found", "No airline found with the given ID.")
         except ValueError:
-            messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
+                messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
 
     def delete_airline():
         """
@@ -92,28 +113,11 @@ def manage_airline_gui():
         except ValueError:
             messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
 
-    # GUI Components for additional functionalities
-
     # Add a frame for buttons at the bottom
     button_frame = tk.Frame(window)
     button_frame.grid(row=4, column=0, columnspan=2, pady=20)
 
-    # Airline ID Label and Entry
-    tk.Label(window, text="Airline ID:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
-    airline_id_entry = tk.Entry(window)
-    airline_id_entry.grid(row=1, column=1, padx=10, pady=5)
-
-    # Company Name Label and Entry
-    tk.Label(window, text="Company Name:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
-    company_name_entry = tk.Entry(window)
-    company_name_entry.grid(row=0, column=1, padx=10, pady=5)
-
-    # Add a helper message for the Airline ID
-    tk.Label(window, text="Input Airline ID to update or delete airline records", font=("Arial", 9), fg="gray").grid(row=3, column=1, padx=10, pady=2, sticky="w")
-    # Add a helper message for the Company Name
-    tk.Label(window, text="Input company name to save or search airline records", font=("Arial", 9), fg="gray").grid(row=2, column=1, padx=10, pady=2, sticky="w")
-
-    # Add buttons to the frame for horizontal alignment in the desired order
+    # Add buttons to the frame for horizontal alignment
     tk.Button(button_frame, text="Save", command=save_airline).pack(side="left", padx=5)
     tk.Button(button_frame, text="Search", command=search_airline).pack(side="left", padx=5)
     tk.Button(button_frame, text="Update", command=update_airline).pack(side="left", padx=5)
