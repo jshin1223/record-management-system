@@ -54,24 +54,39 @@ def manage_flight_gui():
         Reads user input from the entry fields, creates flight unique ID.
         and saves the record using the FlightRecord class.
 
+            Validate for duplicate flight records with the same Client ID, Airline ID, and Date/Time.
+
         If the operation executes well, shows a success message.
         If there is an error then shows an error message.
         """
-        # Create a dictionary to store flight data
-        flight_data = {
-            "Flight_ID": FlightRecord.generate_id(),  # Generate a unique ID for the flight
-            "Client_ID": int(client_id_entry.get()),  # Get the Client ID from the entry field
-            "Airline_ID": int(airline_id_entry.get()),  # Get the Airline ID from the entry field
-            "Date/Time": date_entry.get(),  # Get the Date from the entry field
-            "Start City": start_city_entry.get(),  # Get the Start City from the entry field
-            "End City": end_city_entry.get(),  # Get the End City from the entry field
-        }
         try:
+            # Create a dictionary to store flight data
+            flight_data = {
+                "Flight_ID": FlightRecord.generate_id(),  # Generate a unique ID for the flight
+                "Client_ID": int(client_id_entry.get()),  # Get the Client ID from the entry field
+                "Airline_ID": int(airline_id_entry.get()),  # Get the Airline ID from the entry field
+                "Date/Time": date_entry.get(),  # Get the Date from the entry field
+                "Start City": start_city_entry.get(),  # Get the Start City from the entry field
+                "End City": end_city_entry.get(),  # Get the End City from the entry field
+            }
+        
+            # Validate for duplicate flight
+            if FlightRecord.is_duplicate_flight(
+                flight_data["Client_ID"], flight_data["Airline_ID"], flight_data["Date/Time"]
+            ):
+                messagebox.showerror("Error", "Duplicate flight record detected. Save operation canceled.")
+                return
+
             # Save the flight record using backend logic
             FlightRecord.create(flight_data)
-            messagebox.showinfo("Success", "Flight record created!")  # Show success message
+            messagebox.showinfo("Success", "Flight record created successfully!")
+        except ValueError as ve:
+            if "invalid literal" in str(ve).lower():
+                messagebox.showerror("Invalid Input", "Please enter valid numeric IDs.")
+            else:
+                messagebox.showerror("Error", str(ve))
         except Exception as e:
-            messagebox.showerror("Error", str(e))  # Show error message if saving fails
+            messagebox.showerror("Error", str(e))
 
     def search_flight():
         """
@@ -93,6 +108,11 @@ def manage_flight_gui():
         Update an existing flight record.
         """
         try:
+            # Ensure the Flight ID field is not empty
+            if not flight_id_entry.get().strip():
+                messagebox.showerror("Error", "Flight ID cannot be empty. Please provide a valid ID.")
+                return
+
             flight_id = int(flight_id_entry.get())
             updated_data = {
                 "Client_ID": int(client_id_entry.get()),
@@ -101,12 +121,20 @@ def manage_flight_gui():
                 "Start City": start_city_entry.get(),
                 "End City": end_city_entry.get(),
             }
+            # Perform update operation
             if FlightRecord.update(flight_id, updated_data):
                 messagebox.showinfo("Success", "Flight record updated!")
             else:
                 messagebox.showinfo("Not Found", "No flight found with the given ID.")
-        except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter valid numeric IDs for Flight ID, Client ID, and Airline ID.")
+        except ValueError as ve:
+        # Check for specific error messages from the backend
+            if "Invalid date and time format" in str(ve):
+                messagebox.showerror("Error", str(ve))  # Show specific error for date and time format
+            else:
+                messagebox.showerror("Error", "Please enter valid numeric IDs for Flight ID, Client ID, and Airline ID.")
+        except Exception as e:
+            # Handle any other unforeseen exceptions
+            messagebox.showerror("Error", str(e))
 
     def delete_flight():
         """
