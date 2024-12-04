@@ -132,8 +132,8 @@ class ClientRecord:
         """
         if not ClientRecord.is_valid_phone(updated_data["Phone Number"]):
             raise ValueError("Invalid phone number format. Follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).")
-        if ClientRecord.is_duplicate_phone(updated_data["Phone Number"]):
-            raise ValueError("Duplicate phone number detected.")
+        # if ClientRecord.is_duplicate_phone(updated_data["Phone Number"]):
+        #     raise ValueError("Duplicate phone number detected.")
         
         records = ClientRecord.load_all()
         for record in records:

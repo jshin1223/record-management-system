@@ -138,23 +138,39 @@ def manage_client_gui():
     # Update client
     def update_client():
         try:
-            client_id = int(search_entry.get())
+            # Ensure the search_entry value is retrieved correctly
+            if not search_entry.get().strip():
+                messagebox.showerror("Error", "Client ID cannot be empty. Please provide a valid ID.")
+                return
+            
+            client_id = search_entry.get().strip()
+            print(f"Debug: Client ID retrieved from search_entry: {client_id}")  # Debug print
+
+            client_id = int(client_id)  # Retrieve Client ID and convert to integer
+            print(f"Debug: Client ID after conversion to integer: {client_id}")  # Debug print
+
+            client_id = int(search_entry.get().strip())  # Retrieve Client ID
             updated_data = {
-                "Name": name_entry.get(),
-                "Address Line 1": address1_entry.get(),
-                "Address Line 2": address2_entry.get(),
-                "Address Line 3": address3_entry.get(),
-                "City": city_entry.get(),
-                "State": state_entry.get(),
-                "Zip Code": zip_entry.get(),
-                "Country": country_entry.get(),
-                "Phone Number": phone_entry.get(),
+                "Name": name_entry.get().strip(),
+                "Address Line 1": address1_entry.get().strip(),
+                "Address Line 2": address2_entry.get().strip(),
+                "Address Line 3": address3_entry.get().strip(),
+                "City": city_entry.get().strip(),
+                "State": state_entry.get().strip(),
+                "Zip Code": zip_entry.get().strip(),
+                "Country": country_entry.get().strip(),
+                "Phone Number": phone_entry.get().strip(),
             }
+
+            print(f"Debug: Updated data to be sent to backend: {updated_data}")  # Debug print
+
+            # Perform update operation
             if ClientRecord.update(client_id, updated_data):
                 messagebox.showinfo("Success", "Client record updated!")
             else:
                 messagebox.showinfo("Not Found", "No client found with the given ID.")
-        except ValueError:
+        except ValueError as e:
+            print(f"Debug: Error encountered - {e}")  # Debug print
             messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
       
     # Add a label and entry field for searching client records by ID
