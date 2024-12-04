@@ -52,6 +52,29 @@ class FlightRecord:
             json.dump(records, f, indent=4)
 
     @staticmethod
+    def is_duplicate_flight(client_id, airline_id, date_time):
+        """
+        Check if a flight record with the same Client ID, Airline ID, and Date/Time already exists.
+
+        Args:
+            client_id (int): The Client ID.
+            airline_id (int): The Airline ID.
+            date_time (str): The Date/Time of the flight.
+
+        Returns:
+            bool: True if a duplicate exists, False otherwise.
+        """
+        records = FlightRecord.load_all()
+        for record in records:
+            if (
+                record["Client_ID"] == client_id
+                and record["Airline_ID"] == airline_id
+                and record["Date/Time"] == date_time
+            ):
+                return True
+        return False
+
+    @staticmethod
     def is_valid_date_time(date_time):
         """
         Validate the date and time format.
