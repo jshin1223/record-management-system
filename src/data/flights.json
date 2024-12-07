@@ -798,13 +798,5 @@
         "Date/Time": "2024-12-03 14:57",
         "Start City": "Atlanta",
         "End City": "Bangkok"
-    },
-    {
-        "Flight_ID": 101,
-        "Client_ID": 100,
-        "Airline_ID": 5,
-        "Date/Time": "2024-12-03 14:57",
-        "Start City": "Atlanta",
-        "End City": "Bangkok"
     }
 ]
