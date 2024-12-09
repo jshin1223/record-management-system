@@ -50,6 +50,44 @@ def manage_flight_gui():
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
+    def delete_flight():
+        """
+        Delete a flight record by ID.
+        """
+        try:
+            flight_id = int(flight_id_entry.get())
+            if FlightRecord.delete(flight_id):
+                messagebox.showinfo("Success", "Flight record deleted!")
+            else:
+                messagebox.showinfo("Not Found", "No flight found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+
+    def update_flight():
+        """
+        Update an existing flight record.
+        """
+        try:
+            flight_id = int(flight_id_entry.get())
+            updated_data = {
+                "Client_ID": int(client_id_entry.get()),
+                "Airline_ID": int(airline_id_entry.get()),
+                "Date/Time": date_entry.get(),
+                "Start City": start_city_entry.get(),
+                "End City": end_city_entry.get(),
+            }
+            if FlightRecord.update(flight_id, updated_data):
+                messagebox.showinfo("Success", "Flight record updated!")
+            else:
+                messagebox.showinfo("Not Found", "No flight found with the given ID.")
+        except ValueError as ve:
+            if "Invalid date and time format" in str(ve):
+                messagebox.showerror("Error", str(ve))
+            else:
+                messagebox.showerror("Error", "Please enter valid numeric IDs for Flight ID, Client ID, and Airline ID.")
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
+
     def search_flight():
         """
         Search for a flight by ID and display the result in a table format.
@@ -76,14 +114,16 @@ def manage_flight_gui():
 
     def reveal_fields():
         """
-        Reveal input fields for new flight entry below the "Record New Flight" button.
+        Reveal input fields for new flight entry below the "Manage Flights" button.
         """
         y_offset = 480
         for label, entry in field_widgets:
             label.place(relx=0.35, y=y_offset, anchor="center", width=350)  # Increased label width
             entry.place(relx=0.65, y=y_offset, anchor="center", width=250)  # Increased entry width
             y_offset += 40
-        save_button.place(relx=0.5, y=y_offset, anchor="center")
+        save_button.place(relx=0.3, y=y_offset, anchor="center")
+        update_button.place(relx=0.5, y=y_offset, anchor="center")
+        delete_button.place(relx=0.7, y=y_offset, anchor="center")
 
     def show_tooltip(event):
         """
@@ -131,7 +171,7 @@ def manage_flight_gui():
     result_text.place(relx=0.5, y=260, anchor="center")
 
     # Button to reveal new flight fields
-    record_button = tk.Button(window, text="Record New Flight", command=reveal_fields, font=("Helvetica", 12, "bold"), bg="#3498DB", fg="white", activebackground="#2980B9", activeforeground="white", width=20)
+    record_button = tk.Button(window, text="Manage Flights", command=reveal_fields, font=("Helvetica", 12, "bold"), bg="#3498DB", fg="white", activebackground="#2980B9", activeforeground="white", width=20)
     record_button.place(relx=0.5, y=430, anchor="center")
 
     # Input fields (hidden initially)
@@ -151,7 +191,12 @@ def manage_flight_gui():
     end_city_entry = tk.Entry(window, bg="#333333", fg="white", insertbackground="white")
 
     save_button = tk.Button(window, text="Save", command=save_flight, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#D35400", activeforeground="white", width=12)
+    update_button = tk.Button(window, text="Update", command=update_flight, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#D35400", activeforeground="white", width=12)
+    delete_button = tk.Button(window, text="Delete", command=delete_flight, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#D35400", activeforeground="white", width=12)
+    
     save_button.config(state="disabled")
+    update_button.place_forget()
+    delete_button.place_forget()
 
     # List of label-entry pairs
     field_widgets = [
@@ -166,10 +211,5 @@ def manage_flight_gui():
     for label, entry in field_widgets:
         label.place_forget()
         entry.place_forget()
-    save_button.place_forget()
-
-    # Dynamically enable save button
-    for entry in [client_id_entry, airline_id_entry, date_entry, start_city_entry, end_city_entry]:
-        entry.bind("<KeyRelease>", enable_save_button)
 
     window.mainloop()
