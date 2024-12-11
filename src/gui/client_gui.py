@@ -162,7 +162,7 @@ def manage_client_gui():
     info_icon.bind("<Enter>", show_tooltip)
     info_icon.bind("<Leave>", hide_tooltip)
 
-    tooltip = tk.Label(window, text="Enter client ID number to search.\nWhen recording a new client at the bottom of this screen,\nplease confirm the client ID number does not already exist.",
+    tooltip = tk.Label(window, text="Enter client ID number to search.\nWhen recording a new client at the bottom of this screen,\nplease confirm the duplicate client with the same phone number does not already exist.",
                        font=("Helvetica", 10), bg="#333333", fg="white", wraplength=300)
     tooltip.place_forget()
 

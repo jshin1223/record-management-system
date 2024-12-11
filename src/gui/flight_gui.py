@@ -15,14 +15,14 @@ def manage_flight_gui():
         except ValueError:
             return False
 
-    def enable_save_button(*args):
-        """
-        Enable or disable the save button based on input validation.
-        """
-        if all(field.get().strip() for field in [client_id_entry, airline_id_entry, date_entry, start_city_entry, end_city_entry]) and validate_inputs():
-            save_button.config(state="normal")
-        else:
-            save_button.config(state="disabled")
+    # def enable_save_button(*args):
+    #     """
+    #     Enable or disable the save button based on input validation.
+    #     """
+    #     if all(field.get().strip() for field in [client_id_entry, airline_id_entry, date_entry, start_city_entry, end_city_entry]) and validate_inputs():
+    #         save_button.config(state="normal")
+    #     else:
+    #         save_button.config(state="disabled")
 
     def save_flight():
         """
@@ -149,7 +149,7 @@ def manage_flight_gui():
     info_icon.bind("<Enter>", show_tooltip)
     info_icon.bind("<Leave>", hide_tooltip)
 
-    tooltip = tk.Label(window, text="Enter flight ID number to search.\nWhen recording a new flight at the bottom of this screen,\nplease confirm the flight ID number does not already exist.",
+    tooltip = tk.Label(window, text="Enter flight ID number to search.\nWhen recording a new flight at the bottom of this screen,\nplease confirm the duplicate flight record with the same client ID, airline ID, and date/time does not already exist.",
                        font=("Helvetica", 10), bg="#333333", fg="white", wraplength=300)
     tooltip.place_forget()
 
@@ -194,7 +194,7 @@ def manage_flight_gui():
     update_button = tk.Button(window, text="Update", command=update_flight, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#D35400", activeforeground="white", width=12)
     delete_button = tk.Button(window, text="Delete", command=delete_flight, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#D35400", activeforeground="white", width=12)
     
-    save_button.config(state="disabled")
+    # save_button.config(state="disabled")
     update_button.place_forget()
     delete_button.place_forget()
 

@@ -4,14 +4,14 @@ from record.airline import AirlineRecord
 
 
 def manage_airline_gui():
-    def enable_save_button(*args):
-        """
-        Enable or disable the save button based on input validation.
-        """
-        if company_name_entry.get().strip():
-            save_button.config(state="normal")
-        else:
-            save_button.config(state="disabled")
+    # def enable_save_button(*args):
+    #     """
+    #     Enable or disable the save button based on input validation.
+    #     """
+    #     if company_name_entry.get().strip():
+    #         save_button.config(state="normal")
+    #     else:
+    #         save_button.config(state="disabled")
 
     def save_airline():
         """
@@ -43,7 +43,7 @@ def manage_airline_gui():
 
     def update_airline():
         """
-        Update an existing airline record.
+        Update an existing airline record by ID.
         """
         try:
             airline_id = int(airline_id_entry.get().strip())
@@ -61,20 +61,20 @@ def manage_airline_gui():
 
     def search_airline():
         """
-        Search for an airline by company name.
+        Search for an airline by ID.
         """
         try:
-            company_name = search_entry.get().strip()
-            result = AirlineRecord.search_by_name(company_name)
+            airline_id = int(search_entry.get().strip())
+            result = AirlineRecord.search(airline_id)
             result_text.delete(1.0, tk.END)
             if result:
                 result_text.insert(tk.END, f"Airline Found:\n")
                 for key, value in result.items():
                     result_text.insert(tk.END, f"{key}: {value}\n")
             else:
-                messagebox.showwarning("Not Found", "No airline found with the given company name.")
-        except Exception as e:
-            messagebox.showerror("Error", str(e))
+                messagebox.showwarning("Not Found", "No airline found with the given ID.")
+        except ValueError:
+            messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
 
     def clear_inputs():
         """
@@ -122,7 +122,7 @@ def manage_airline_gui():
 
     tooltip = tk.Label(
         window,
-        text="Enter airline ID number to search.\nWhen recording a new airline at the bottom of this screen,\nplease confirm the airline ID number does not already exist.",
+        text="Enter airline ID number to search.\nWhen recording a new airline at the bottom of this screen,\nplease confirm the airline name does not already exist.",
         font=("Helvetica", 10),
         bg="#333333",
         fg="white",
@@ -162,7 +162,7 @@ def manage_airline_gui():
     update_button = tk.Button(window, text="Update", command=update_airline, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#218838", activeforeground="white", width=12)
     delete_button = tk.Button(window, text="Delete", command=delete_airline, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#C0392B", activeforeground="white", width=12)
 
-    save_button.config(state="disabled")
+    # save_button.config(state="disabled")
     update_button.place_forget()
     delete_button.place_forget()
 
@@ -176,6 +176,6 @@ def manage_airline_gui():
         label.place_forget()
         entry.place_forget()
 
-    company_name_entry.bind("<KeyRelease>", enable_save_button)
+    # company_name_entry.bind("<KeyRelease>", enable_save_button)
 
     window.mainloop()
