@@ -31,7 +31,7 @@ In Terminal
 
 ### Used Technologies
 
-This program requires Python 3.8 or higher and the following dependencies:
+This program requires **Python 3.8 or higher** and the following dependencies:
 
 **Tkinter**: Included in Python installation.  
 **JSON**: A standard data format that doesn’t require installation.
