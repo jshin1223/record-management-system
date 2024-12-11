@@ -1,3 +1,12 @@
+## Table of Contents
+1. [Project Description](#project-description)
+2. [Installation](#installation)
+3. [Execution and Usage](#execution-and-usage)
+4. [Technologies Used](#technologies-used)
+5. [Current Features](#current-features)
+6. [Contributors](#contributors)
+7. [License](#license)
+
 ### Project description
 
 <h3 style="font-size: 16px;">Record Management System</h3>
@@ -12,7 +21,9 @@ The system comes with an easy-to-use Graphical User Interface (GUI) to add, modi
 
 ### Installation
 
-No additional installation commands or dependencies are neeeded to run the program. 
+Ensure you have **Python 3.8 or higher** installed on your system. If Python is not installed, download and install it from the [official Python website](https://www.python.org/).
+
+No additional installation commands or dependencies are neeeded to run the program, as required libraries (Tkinter and JSON) are included with the Python standard library.
 <hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Execution and Usage
@@ -20,42 +31,43 @@ No additional installation commands or dependencies are neeeded to run the progr
 In Terminal
 
 1. **Clone the Repository**:  
-   > git clone <repository_url>  
-   > cd <repository_directory>
+   ```bash
+   git clone <repository_url>
+   cd <repository_directory>
 
-2. **Run the Program**: 
-   Go to the src/ directory and type the executable filename to execute.  
-   
-   > **src> python main.py**
+2. **Run the Program**: Navigate to the src/ directory and execute the program:
+    ```bash
+    python main.py
 <hr style="height:1px; border:none; background-color:#ccc;">
 
-### Used Technologies
+### Technologies Used
 
-This program requires **Python 3.8 or higher** and the following dependencies:
+**Python 3.8 or higher** was used with the following dependencies:
 
 **Tkinter**: Included in Python installation.  
 **JSON**: A standard data format that doesn’t require installation.
 <hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Current Features
+The Record Management System provides the following capabilities:
 
 - **Client Records**:
-  - Save a new client information by inputting the client name, address, and telephone number.
-  - Update a client information by inputting the corrected client name, address, and telephone number. 
-  - Search the client records using the Client ID.
+  - Add and Save a new client information by inputting the client name, address, and telephone number.
+  - Update a client information with the corrected client name, address, and telephone number. 
+  - Search the client records by the Client ID.
 
 - **Airline Records**:
-  - Add a new airline by entering the name of the airline company.
+  - Add new airline information by entering the airline company name.
   - Search Airline records by Airline ID.
 
 - **Flight Records**:
-  - Add a new flight information by entering the Client ID, Airline ID, Date/Time, start city, and end city.
-  - Update a flight record by entering the correct Client ID, Airline ID, Date/Time, start city, and end city.
-  - Search a flight record by entering Flight ID.
+  - Add new flight information by providing Client ID, Airline ID, Date/Time, Start City, and End City.
+  - Update a flight record with the correct Client ID, Airline ID, Date/Time, Start City, and End City.
+  - Search for flight records by entering Flight ID.
 
 - **Persistent Storage**:
-  - Information is stored in JSON for archival purposes in data folder.
-  - Whenever the application is started, it automatically populates records which already exist.
+  - All data is saved in JSON files within the `data` folder.
+  - Existing records are automatically loaded when the application starts.
 <hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Contributors
@@ -63,7 +75,8 @@ This program requires **Python 3.8 or higher** and the following dependencies:
 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 <hr style="height:1px; border:none; background-color:#ccc;">
 
-### Released under MIT License
+### License
+This project is licensed under the MIT License.
 
 Copyright (c) 2024 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 
