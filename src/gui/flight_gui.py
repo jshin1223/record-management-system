@@ -4,25 +4,16 @@ from record.flight import FlightRecord
 
 
 def manage_flight_gui():
-    def validate_inputs():
-        """
-        Validate input fields for numeric and date requirements.
-        """
-        try:
-            int(client_id_entry.get())
-            int(airline_id_entry.get())
-            return True
-        except ValueError:
-            return False
-
-    # def enable_save_button(*args):
+    # def validate_inputs():
     #     """
-    #     Enable or disable the save button based on input validation.
+    #     Validate input fields for numeric and date requirements.
     #     """
-    #     if all(field.get().strip() for field in [client_id_entry, airline_id_entry, date_entry, start_city_entry, end_city_entry]) and validate_inputs():
-    #         save_button.config(state="normal")
-    #     else:
-    #         save_button.config(state="disabled")
+    #     try:
+    #         int(client_id_entry.get())
+    #         int(airline_id_entry.get())
+    #         return True
+    #     except ValueError:
+    #         return False
 
     def save_flight():
         """
@@ -45,8 +36,12 @@ def manage_flight_gui():
             FlightRecord.create(flight_data)
             messagebox.showinfo("Success", "Flight record created successfully!")
             clear_inputs()
-        except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter valid numeric IDs.")
+        except ValueError as ve:
+            # Check for specific error messages from the backend
+            if "Invalid date and time format" in str(ve):
+                messagebox.showerror("Error", str(ve))  # Show specific error for date and time format
+            else:
+                messagebox.showerror("Error", "Please enter valid numeric IDs.")
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
@@ -149,7 +144,7 @@ def manage_flight_gui():
     info_icon.bind("<Enter>", show_tooltip)
     info_icon.bind("<Leave>", hide_tooltip)
 
-    tooltip = tk.Label(window, text="Enter flight ID number to search.\nWhen recording a new flight at the bottom of this screen,\nplease confirm the duplicate flight record with the same client ID, airline ID, and date/time does not already exist.",
+    tooltip = tk.Label(window, text="Enter flight ID number to search or delete.\nWhen recording a new flight at the bottom of this screen,\nplease confirm the duplicate flight record with the same client ID, airline ID, and date/time does not already exist.",
                        font=("Helvetica", 10), bg="#333333", fg="white", wraplength=300)
     tooltip.place_forget()
 
