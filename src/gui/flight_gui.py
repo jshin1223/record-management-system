@@ -41,7 +41,7 @@ def manage_flight_gui():
             if "Invalid date and time format" in str(ve):
                 messagebox.showerror("Error", str(ve))  # Show specific error for date and time format
             else:
-                messagebox.showerror("Error", "Please enter valid numeric IDs.")
+                messagebox.showerror("Error", "Please enter valid numeric Flight ID.")
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
@@ -56,7 +56,7 @@ def manage_flight_gui():
             else:
                 messagebox.showinfo("Not Found", "No flight found with the given ID.")
         except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric Flight ID.")
 
     def update_flight():
         """
@@ -79,7 +79,7 @@ def manage_flight_gui():
             if "Invalid date and time format" in str(ve):
                 messagebox.showerror("Error", str(ve))
             else:
-                messagebox.showerror("Error", "Please enter valid numeric IDs for Flight ID, Client ID, and Airline ID.")
+                messagebox.showerror("Error", "Please enter valid Flight ID.")
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
@@ -98,7 +98,7 @@ def manage_flight_gui():
             else:
                 messagebox.showinfo("Not Found", "No flight found with the given ID.")
         except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric Flight ID.")
 
     def clear_inputs():
         """

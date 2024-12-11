@@ -53,7 +53,7 @@ def manage_client_gui():
             else:
                 messagebox.showinfo("Not Found", "No client found with the given ID.")
         except ValueError:
-            messagebox.showerror("Invalid Input", "Please enter a valid numeric ID.")
+            messagebox.showerror("Invalid Input", "Please enter a valid numeric Client ID.")
 
     def update_client():
         """
@@ -82,7 +82,7 @@ def manage_client_gui():
             if "Invalid phone number format" in str(ve):
                 messagebox.showerror("Error", str(ve))
             else:
-                messagebox.showerror("Error", "Please enter a valid numeric ID.")
+                messagebox.showerror("Error", "Please enter a valid numeric Client ID.")
         except Exception as e:
             # Handle any other unforeseen exceptions
             messagebox.showerror("Error", str(e))

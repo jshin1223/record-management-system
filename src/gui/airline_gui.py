@@ -30,7 +30,7 @@ def manage_airline_gui():
             else:
                 messagebox.showwarning("Not Found", "No airline found with the given ID.")
         except ValueError:
-            messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
+            messagebox.showerror("Error", "Invalid Airline ID. Please enter a numeric value.")
 
     def update_airline():
         """
@@ -47,8 +47,15 @@ def manage_airline_gui():
                 messagebox.showinfo("Success", "Airline record updated successfully!")
             else:
                 messagebox.showwarning("Not Found", "No airline found with the given ID.")
-        except ValueError:
-            messagebox.showerror("Error", "Invalid ID. Please enter a numeric value.")
+        except ValueError as ve:
+            # Display specific error messages from the backend
+            if "Duplicate airline name detected" in str(ve):
+                messagebox.showerror("Error", str(ve))
+            else:
+                messagebox.showerror("Error", "Invalid Airline ID. Please enter a numeric value.")
+        except Exception as e:
+            # Catch all other exceptions
+            messagebox.showerror("Error", str(e))
 
     def search_airline():
         """
