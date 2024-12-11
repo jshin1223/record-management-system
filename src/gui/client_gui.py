@@ -15,16 +15,16 @@ def manage_client_gui():
         except ValueError:
             return False
 
-    def enable_save_button(*args):
-        """
-        Enable or disable the save button based on input validation.
-        """
-        if all(field.get().strip() for field in [
-            name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry
-        ]) and validate_inputs():
-            save_button.config(state="normal")
-        else:
-            save_button.config(state="disabled")
+    # def enable_save_button(*args):
+    #     """
+    #     Enable or disable the save button based on input validation.
+    #     """
+    #     if all(field.get().strip() for field in [
+    #         name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry
+    #     ]) and validate_inputs():
+    #         save_button.config(state="normal")
+    #     else:
+    #         save_button.config(state="disabled")
 
     def save_client():
         """
@@ -47,6 +47,9 @@ def manage_client_gui():
             ClientRecord.create(client_data)
             messagebox.showinfo("Success", "Client record created!")
             clear_inputs()
+        except ValueError as ve:
+            # Display specific error messages from the backend
+            messagebox.showerror("Error", str(ve))
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
@@ -85,9 +88,14 @@ def manage_client_gui():
                 messagebox.showinfo("Success", "Client record updated!")
             else:
                 messagebox.showinfo("Not Found", "No client found with the given ID.")
-        except ValueError:
-            messagebox.showerror("Error", "Please enter a valid numeric ID.")
+        except ValueError as ve:
+            # Display specific error messages from the backend (e.g., invalid phone number)
+            if "Invalid phone number format" in str(ve):
+                messagebox.showerror("Error", str(ve))
+            else:
+                messagebox.showerror("Error", "Please enter a valid numeric ID.")
         except Exception as e:
+            # Handle any other unforeseen exceptions
             messagebox.showerror("Error", str(e))
 
     def search_client():
@@ -211,7 +219,7 @@ def manage_client_gui():
     update_button = tk.Button(window, text="Update", command=update_client, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#1C7A30", activeforeground="white", width=12)
     delete_button = tk.Button(window, text="Delete", command=delete_client, font=("Helvetica", 12, "bold"), bg="#F39C12", fg="white", activebackground="#A93226", activeforeground="white", width=12)
 
-    save_button.config(state="disabled")
+    # save_button.config(state="disabled")
     update_button.place_forget()
     delete_button.place_forget()
 
@@ -231,7 +239,7 @@ def manage_client_gui():
         label.place_forget()
         entry.place_forget()
 
-    for entry in [name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry]:
-        entry.bind("<KeyRelease>", enable_save_button)
+    # for entry in [name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry]:
+    #     entry.bind("<KeyRelease>", enable_save_button)
 
     window.mainloop()

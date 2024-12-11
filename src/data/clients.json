@@ -1566,8 +1566,8 @@
         "Address Line 1": "100 Sangam-ro",
         "Address Line 2": "Gangdong-gu",
         "Address Line 3": "",
-        "City": "Seoul",
-        "State": "",
+        "City": "",
+        "State": "Seoul",
         "Zip Code": "05296",
         "Country": "South Korea",
         "Phone Number": "82-010-55558888"
