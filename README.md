@@ -1,6 +1,6 @@
 ### Project description
 
-<p style="font-size: 18px;">Record Management System</p>
+<h3 style="font-size: 16px;">Record Management System</h3>
 
 The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
 1. **Client Records**
@@ -8,30 +8,34 @@ The Record Management System is a Python-based desktop application designed for 
 3. **Flight Records**
 
 The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
+<hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Installation
 
 No additional installation commands or dependencies are neeeded to run the program. 
+<hr style="height:1px; border:none; background-color:#ccc;">
 
-### Execution and usage
+### Execution and Usage
 
 In Terminal
 
-1. **Clone the Repository**:\
-   > git clone <repository_url>\
-   > cd <repository_directory>\
+1. **Clone the Repository**:  
+   > git clone <repository_url>  
+   > cd <repository_directory>
 
 2. **Run the Program**: 
-   Go to the src/ directory and type the executable filename to execute.\ 
-   \
-   **src> python main.py**
+   Go to the src/ directory and type the executable filename to execute.  
+   
+   > **src> python main.py**
+<hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Used Technologies
 
 This program requires Python 3.8 or higher and the following dependencies:
 
-**tkinter**: Included in Python installation.\
-**json**: A standard data format that doesn’t require installation.
+**Tkinter**: Included in Python installation.  
+**JSON**: A standard data format that doesn’t require installation.
+<hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Current Features
 
@@ -50,10 +54,12 @@ This program requires Python 3.8 or higher and the following dependencies:
 - **Persistent Storage**:
   - Information is stored in JSON for archival purposes in files.
   - Whenever the application is started, it automatically populates records which already exist.
+<hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Contributors
 
 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
+<hr style="height:1px; border:none; background-color:#ccc;">
 
 ### Released under MIT License
 
