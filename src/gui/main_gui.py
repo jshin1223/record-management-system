@@ -5,44 +5,97 @@ It provides a menu to navigate between:
 - Client Records
 - Airline Records
 - Flight Records
-
-Functions:
-    create_gui: Opens the main window for records management.
 """
 
-import tkinter as tk  # Importing tkinter for creating GUI components
-from gui.client_gui import manage_client_gui  # Import the client management GUI
-from gui.airline_gui import manage_airline_gui  # Import the airline management GUI
-from gui.flight_gui import manage_flight_gui  # Import the flight management GUI
+import tkinter as tk
+from tkinter import ttk
+from gui.client_gui import manage_client_gui
+from gui.airline_gui import manage_airline_gui
+from gui.flight_gui import manage_flight_gui
+
+
+def create_button_with_shadow(canvas, x, y, text, command):
+    """
+    Create a button with a shadow effect on the canvas.
+
+    Args:
+        canvas (tk.Canvas): Canvas to draw the button on.
+        x, y (int): Center coordinates for the button.
+        text (str): Button text.
+        command (function): Function to execute on button click.
+    """
+    shadow_offset = 3
+
+    # Create shadow rectangle
+    shadow = canvas.create_rectangle(
+        x - 150 + shadow_offset, y - 25 + shadow_offset,
+        x + 150 + shadow_offset, y + 25 + shadow_offset,
+        fill="#2E2E2E", outline=""
+    )
+
+    # Create main button rectangle
+    button = canvas.create_rectangle(
+        x - 150, y - 25, x + 150, y + 25,
+        fill="#F39C12", outline="#E67E22", width=2
+    )
+
+    # Add text
+    text_id = canvas.create_text(
+        x, y, text=text, font=("Helvetica", 16, "bold"),
+        fill="white"
+    )
+
+    # Bind click event
+    for element in [button, text_id]:
+        canvas.tag_bind(element, "<Button-1>", lambda event: command())
+
 
 def create_gui():
     """
     Opens the main GUI of the Record Management System.
-
-    The main GUI:
-    - Contains a drop down menu for three kinds of record management sections.
-    - Provides navigation to the Client, Airline, and Flight Record Management windows.
     """
     # Create the main application window
     root = tk.Tk()
-    root.title("Record Management System")  # Set the window title
-    root.geometry("800x600")  # Set the window size (width x height)
+    root.title("Record Management System")
+    root.geometry("800x600")
+    root.configure(bg="#1C1C1C")
 
-    # Create a menu bar for navigation
-    menu = tk.Menu(root)  # Create a Menu widget
-    root.config(menu=menu)  # Configure the root window to use the menu
+    # Create a canvas for shadows and buttons
+    canvas = tk.Canvas(root, width=800, height=600, bg="#1C1C1C", highlightthickness=0)
+    canvas.pack(fill="both", expand=True)
 
-    # Add a "Records" menu to the menu bar
-    record_menu = tk.Menu(menu)  # Create a submenu for records
-    menu.add_cascade(label="Records", menu=record_menu)  # Add the submenu to the menu bar
+    # Title Label with Shadow
+    canvas.create_text(
+        402, 102, text="Record Management System",
+        font=("Helvetica", 28, "bold"),
+        fill="#2E2E2E"  # Shadow color
+    )
+    canvas.create_text(
+        400, 100, text="Record Management System",
+        font=("Helvetica", 28, "bold"),
+        fill="#F7CA18"
+    )
 
-    # Add menu items to navigate to specific record management windows
-    record_menu.add_command(label="Client Records", command=manage_client_gui)  # Open Client Records GUI
-    record_menu.add_command(label="Airline Records", command=manage_airline_gui)  # Open Airline Records GUI
-    record_menu.add_command(label="Flight Records", command=manage_flight_gui)  # Open Flight Records GUI
+    # Buttons with Shadows
+    create_button_with_shadow(canvas, 400, 200, "Client Records", manage_client_gui)
+    create_button_with_shadow(canvas, 400, 300, "Airline Records", manage_airline_gui)
+    create_button_with_shadow(canvas, 400, 400, "Flight Records", manage_flight_gui)
+
+    # Footer with Shadow
+    canvas.create_text(
+        402, 552, text="© 2024 Airline Record Management System",
+        font=("Helvetica", 10),
+        fill="#2E2E2E"
+    )
+    canvas.create_text(
+        400, 550, text="© 2024 Airline Record Management System",
+        font=("Helvetica", 10),
+        fill="#BDC3C7"
+    )
 
     # Start the main event loop for the application
     root.mainloop()
+
 
 # Run the GUI if the script is executed directly
 if __name__ == "__main__":
