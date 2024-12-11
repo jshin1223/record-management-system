@@ -40,19 +40,21 @@ This program requires Python 3.8 or higher and the following dependencies:
 ### Current Features
 
 - **Client Records**:
-  - Specify and input the name of the client, the address and telephone number of the client.
-  - One of the operations anybody can perform is to look for the client records using the ID.
+  - Save a new client information by inputting the client name, address, and telephone number.
+  - Update a client information by inputting the corrected client name, address, and telephone number. 
+  - Search the client records using the Client ID.
 
 - **Airline Records**:
-  - Airline details should also be added as well inclusive of a code and the name of the air company.
-  - Airline records search by identification number.
+  - Add a new airline by entering the name of the airline company.
+  - Search Airline records by Airline ID.
 
 - **Flight Records**:
-  - Append flight details to this table, of course such as client ID, airline ID, date, start city and end city.
-  - Document file search by Flight ID.
+  - Add a new flight information by entering the Client ID, Airline ID, Date/Time, start city, and end city.
+  - Update a flight record by entering the correct Client ID, Airline ID, Date/Time, start city, and end city.
+  - Search a flight record by entering Flight ID.
 
 - **Persistent Storage**:
-  - Information is stored in JSON for archival purposes in files.
+  - Information is stored in JSON for archival purposes in data folder.
   - Whenever the application is started, it automatically populates records which already exist.
 <hr style="height:1px; border:none; background-color:#ccc;">
 
