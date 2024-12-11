@@ -1,6 +1,6 @@
-## Project description
+### Project description
 
-**Record Management System**
+<p style="font-size: 18px;">Record Management System</p>
 
 The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
 1. **Client Records**
@@ -9,35 +9,31 @@ The Record Management System is a Python-based desktop application designed for 
 
 The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
 
----
-## Installation
+### Installation
 
 No additional installation commands or dependencies are neeeded to run the program. 
 
----
-## Execution and usage
+### Execution and usage
 
 In Terminal
 
-1. **Clone the Repository**:
-   git clone <repository_url>
-   cd <repository_directory>
+1. **Clone the Repository**:\
+   > git clone <repository_url>\
+   > cd <repository_directory>\
 
 2. **Run the Program**: 
-   Go to the src/ directory and type the executable filename to execute. 
+   Go to the src/ directory and type the executable filename to execute.\ 
+   \
+   **src> python main.py**
 
-   ** src> python main.py **
-
----
-## Used Technologies
+### Used Technologies
 
 This program requires Python 3.8 or higher and the following dependencies:
 
-**tkinter** included in Python installation.\
-**json** A standard data format that doesn’t require installation.
+**tkinter**: Included in Python installation.\
+**json**: A standard data format that doesn’t require installation.
 
----
-## Current Features
+### Current Features
 
 - **Client Records**:
   - Specify and input the name of the client, the address and telephone number of the client.
@@ -55,13 +51,11 @@ This program requires Python 3.8 or higher and the following dependencies:
   - Information is stored in JSON for archival purposes in files.
   - Whenever the application is started, it automatically populates records which already exist.
 
----
-## Contributors
+### Contributors
 
 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 
----
-# Released under MIT License
+### Released under MIT License
 
 Copyright (c) 2024 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 
