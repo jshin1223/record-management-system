@@ -4,27 +4,16 @@ from record.client import ClientRecord
 
 
 def manage_client_gui():
-    def validate_inputs():
-        """
-        Validate input fields for numeric requirements.
-        """
-        try:
-            if zip_entry.get().strip():
-                int(zip_entry.get())
-            return True
-        except ValueError:
-            return False
-
-    # def enable_save_button(*args):
+    # def validate_inputs():
     #     """
-    #     Enable or disable the save button based on input validation.
+    #     Validate input fields for numeric requirements.
     #     """
-    #     if all(field.get().strip() for field in [
-    #         name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry
-    #     ]) and validate_inputs():
-    #         save_button.config(state="normal")
-    #     else:
-    #         save_button.config(state="disabled")
+    #     try:
+    #         if zip_entry.get().strip():
+    #             int(zip_entry.get())
+    #         return True
+    #     except ValueError:
+    #         return False
 
     def save_client():
         """
@@ -162,7 +151,7 @@ def manage_client_gui():
     info_icon.bind("<Enter>", show_tooltip)
     info_icon.bind("<Leave>", hide_tooltip)
 
-    tooltip = tk.Label(window, text="Enter client ID number to search.\nWhen recording a new client at the bottom of this screen,\nplease confirm the duplicate client with the same phone number does not already exist.",
+    tooltip = tk.Label(window, text="Enter client ID number to search or delete.\nWhen recording a new client at the bottom of this screen,\nplease confirm the duplicate client with the same phone number does not already exist.",
                        font=("Helvetica", 10), bg="#333333", fg="white", wraplength=300)
     tooltip.place_forget()
 
@@ -238,8 +227,5 @@ def manage_client_gui():
     for label, entry in field_widgets:
         label.place_forget()
         entry.place_forget()
-
-    # for entry in [name_entry, address1_entry, city_entry, state_entry, zip_entry, country_entry, phone_entry]:
-    #     entry.bind("<KeyRelease>", enable_save_button)
 
     window.mainloop()

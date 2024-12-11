@@ -4,15 +4,6 @@ from record.airline import AirlineRecord
 
 
 def manage_airline_gui():
-    # def enable_save_button(*args):
-    #     """
-    #     Enable or disable the save button based on input validation.
-    #     """
-    #     if company_name_entry.get().strip():
-    #         save_button.config(state="normal")
-    #     else:
-    #         save_button.config(state="disabled")
-
     def save_airline():
         """
         Save a new airline record.
@@ -122,7 +113,7 @@ def manage_airline_gui():
 
     tooltip = tk.Label(
         window,
-        text="Enter airline ID number to search.\nWhen recording a new airline at the bottom of this screen,\nplease confirm the airline name does not already exist.",
+        text="Enter airline ID number to search or delete.\nWhen recording a new airline at the bottom of this screen,\nplease confirm the airline name does not already exist.",
         font=("Helvetica", 10),
         bg="#333333",
         fg="white",
@@ -175,7 +166,5 @@ def manage_airline_gui():
     for label, entry in field_widgets:
         label.place_forget()
         entry.place_forget()
-
-    # company_name_entry.bind("<KeyRelease>", enable_save_button)
 
     window.mainloop()
