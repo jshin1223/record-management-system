@@ -1,4 +1,16 @@
-## Table of Contents
+### Project description
+
+# Record Management System
+
+The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
+1. **Client Records**
+2. **Airline Records**
+3. **Flight Records**
+
+The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
+
+---
+### Table of Contents
 1. [Project Description](#project-description)
 2. [Installation](#installation)
 3. [Execution and Usage](#execution-and-usage)
@@ -7,25 +19,14 @@
 6. [Contributors](#contributors)
 7. [License](#license)
 
-### Project description
-
-<h3 style="font-size: 16px;">Record Management System</h3>
-
-The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
-1. **Client Records**
-2. **Airline Records**
-3. **Flight Records**
-
-The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
-<hr style="height:1px; border:none; background-color:#ccc;">
-
+---
 ### Installation
 
 Ensure you have **Python 3.8 or higher** installed on your system. If Python is not installed, download and install it from the [official Python website](https://www.python.org/).
 
 No additional installation commands or dependencies are neeeded to run the program, as required libraries (Tkinter and JSON) are included with the Python standard library.
-<hr style="height:1px; border:none; background-color:#ccc;">
 
+---
 ### Execution and Usage
 
 In Terminal
@@ -38,16 +39,16 @@ In Terminal
 2. **Run the Program**: Navigate to the src/ directory and execute the program:
     ```bash
     python main.py
-<hr style="height:1px; border:none; background-color:#ccc;">
 
+---
 ### Technologies Used
 
 **Python 3.8 or higher** was used with the following dependencies:
 
 **Tkinter**: Included in Python installation.  
 **JSON**: A standard data format that doesn’t require installation.
-<hr style="height:1px; border:none; background-color:#ccc;">
 
+---
 ### Current Features
 The Record Management System provides the following capabilities:
 
@@ -68,13 +69,13 @@ The Record Management System provides the following capabilities:
 - **Persistent Storage**:
   - All data is saved in JSON files within the `data` folder.
   - Existing records are automatically loaded when the application starts.
-<hr style="height:1px; border:none; background-color:#ccc;">
 
+---
 ### Contributors
 
 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
-<hr style="height:1px; border:none; background-color:#ccc;">
 
+---
 ### License
 This project is licensed under the MIT License.
 
@@ -84,4 +85,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE F---OR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
