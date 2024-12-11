@@ -1,4 +1,6 @@
-# Record Management System
+## Project description
+
+**Record Management System**
 
 The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
 1. **Client Records**
@@ -8,8 +10,34 @@ The Record Management System is a Python-based desktop application designed for 
 The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
 
 ---
+## Installation
 
-## Features
+No additional installation commands or dependencies are neeeded to run the program. 
+
+---
+## Execution and usage
+
+In Terminal
+
+1. **Clone the Repository**:
+   git clone <repository_url>
+   cd <repository_directory>
+
+2. **Run the Program**: 
+   Go to the src/ directory and type the executable filename to execute. 
+
+   ** src> python main.py **
+
+---
+## Used Technologies
+
+This program requires Python 3.8 or higher and the following dependencies:
+
+**tkinter** included in Python installation.\
+**json** A standard data format that doesn’t require installation.
+
+---
+## Current Features
 
 - **Client Records**:
   - Specify and input the name of the client, the address and telephone number of the client.
@@ -28,30 +56,17 @@ The system comes with an easy-to-use Graphical User Interface (GUI) to add, modi
   - Whenever the application is started, it automatically populates records which already exist.
 
 ---
+## Contributors
 
-## Requirements
-
-This program requires Python 3.8 or higher and the following dependencies:
-
-**tkinter** included in Python installation.\
-**json** – A standard Python library that doesn’t require installation.
+Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 
 ---
+# Released under MIT License
 
-## Installation
+Copyright (c) 2024 Thomas Mortimer, Hilya Ligamena Nahole, Nishant Shrivastava, Sung Shin
 
-1. **Clone the Repository**:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-   git clone <repository_url>
-   cd <repository_directory>
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-2. Run the Program: Go to the src/ directory and type:
-
-   python main.py
-
----
-
-## Acknowledgements
-
-* Created for the Software Development in Practice module at University of Liverpool.
-* Developed according to the project requirements for properly managing records with a GUI.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
