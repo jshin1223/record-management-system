@@ -11,8 +11,8 @@ import os  # Importing os to work with file system paths
 
 # Add the project root directory to PYTHONPATH
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-# This ensures Python can locate the `gui` package and other modules in the project.
 
+# This ensures Python can locate the `gui` package and other modules in the project.
 from gui.main_gui import create_gui  # Import the function to create the main GUI
 
 if __name__ == "__main__":

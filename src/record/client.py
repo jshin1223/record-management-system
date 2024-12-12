@@ -46,6 +46,8 @@ class ClientRecord:
 
         Args:
             records (list): A list of dictionaries representing client records to save.
+
+        This method overwrites the existing data in the file with the provided records.
         """
         # Open the JSON file in write mode and dump the records
         with open(CLIENT_FILE, "w") as f:
@@ -61,6 +63,8 @@ class ClientRecord:
 
         Returns:
             bool: True if a duplicate exists, False otherwise.
+
+        This ensures no two clients share the same phone number.
         """
         records = ClientRecord.load_all()
         return any(record["Phone Number"] == phone_number for record in records)
@@ -75,6 +79,8 @@ class ClientRecord:
 
         Returns:
             bool: True if the phone number format is valid, False otherwise.
+
+        The phone number format must follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).
         """
         pattern = r"^\d{1,3}-\d{1,3}-\d{4,10}$"
         return bool(re.match(pattern, phone_number))
@@ -82,10 +88,13 @@ class ClientRecord:
     @staticmethod
     def create(client_data):
         """
-        Create a new client record with validations that check pre-existing duplicate records. 
+        Create a new client record with validations that check for pre-existing duplicate records.
 
         Args:
             client_data (dict): A dictionary containing client information, including ID, name, and address.
+
+        Raises:
+            ValueError: If the phone number is invalid or a duplicate is detected.
         """
         if not ClientRecord.is_valid_phone(client_data["Phone Number"]):
             raise ValueError("Invalid phone number format. Follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).")
@@ -99,7 +108,6 @@ class ClientRecord:
         # Save the updated records list
         ClientRecord.save_all(records)
 
-
     @staticmethod
     def delete(client_id):
         """
@@ -110,6 +118,8 @@ class ClientRecord:
 
         Returns:
             bool: True if the record was deleted, False if not found.
+
+        This method removes the record with the specified ID from the list and saves the updated list.
         """
         records = ClientRecord.load_all()
         updated_records = [record for record in records if record["ID"] != client_id]
@@ -121,7 +131,7 @@ class ClientRecord:
     @staticmethod
     def update(client_id, updated_data):
         """
-        Update a client record by ID with validations that check pre-existing duplicate records.
+        Update a client record by ID with validations that check for pre-existing duplicate records.
 
         Args:
             client_id (int): The ID of the client to update.
@@ -129,11 +139,12 @@ class ClientRecord:
 
         Returns:
             bool: True if the record was updated, False if not found.
+
+        Raises:
+            ValueError: If the phone number is invalid.
         """
         if not ClientRecord.is_valid_phone(updated_data["Phone Number"]):
             raise ValueError("Invalid phone number format. Follow CountryCode-AreaCode-Number (e.g., 1-773-5435432).")
-        # if ClientRecord.is_duplicate_phone(updated_data["Phone Number"]):
-        #     raise ValueError("Duplicate phone number detected.")
         
         records = ClientRecord.load_all()
         for record in records:
@@ -153,14 +164,13 @@ class ClientRecord:
 
         Returns:
             dict: The client record if found, otherwise None.
+
+        This method iterates through the list of records to find a matching ID.
         """
-        # Load existing records
         records = ClientRecord.load_all()
-        # Iterate through records to find a match
         for record in records:
             if record["ID"] == client_id:
                 return record
-        # Return None if no matching record is found
         return None
 
     @staticmethod
@@ -170,11 +180,10 @@ class ClientRecord:
 
         Returns:
             int: A unique ID for the new client record.
+
+        This method ensures IDs are incremental and unique, starting from 1.
         """
-        # Load existing records
         records = ClientRecord.load_all()
-        # If no records exist, start with ID 1
         if not records:
             return 1
-        # Return the maximum existing ID plus one
         return max(record["ID"] for record in records) + 1
