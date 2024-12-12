@@ -32,11 +32,9 @@ class FlightRecord:
             list: A list of dictionaries representing all flight records.
         """
         try:
-            # Open the JSON file in read mode and load the records
             with open(FLIGHT_FILE, "r") as f:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
-            # If the file is missing or invalid, return an empty list
             return []
 
     @staticmethod
@@ -46,8 +44,9 @@ class FlightRecord:
 
         Args:
             records (list): A list of dictionaries representing flight records to save.
+
+        This method overwrites the current data in the file with the provided list.
         """
-        # Open the JSON file in write mode and dump the records
         with open(FLIGHT_FILE, "w") as f:
             json.dump(records, f, indent=4)
 
@@ -84,6 +83,8 @@ class FlightRecord:
 
         Returns:
             bool: True if the format is valid, False otherwise.
+
+        The expected format is YYYY-MM-DD HH:MM.
         """
         try:
             datetime.strptime(date_time, "%Y-%m-%d %H:%M")
@@ -94,19 +95,19 @@ class FlightRecord:
     @staticmethod
     def create(flight_data):
         """
-        Create a new flight record with validations that check the correct format of date and time and save it.
+        Create a new flight record with validations.
 
         Args:
             flight_data (dict): A dictionary containing flight information, such as client ID, airline ID, date, start city, and end city.
+
+        Raises:
+            ValueError: If the date and time format is invalid.
         """
         if not FlightRecord.is_valid_date_time(flight_data["Date/Time"]):
             raise ValueError("Invalid date and time format. Use YYYY-MM-DD HH:MM.")
         
-        # Load existing records
         records = FlightRecord.load_all()
-        # Append the new record to the list
         records.append(flight_data)
-        # Save the updated records list
         FlightRecord.save_all(records)
 
     @staticmethod
@@ -120,13 +121,10 @@ class FlightRecord:
         Returns:
             dict: The flight record if found, otherwise None.
         """
-        # Load existing records
         records = FlightRecord.load_all()
-        # Iterate through records to find a match
         for record in records:
             if record.get("Flight_ID") == flight_id:
                 return record
-        # Return None if no matching record is found
         return None
 
     @staticmethod
@@ -136,19 +134,18 @@ class FlightRecord:
 
         Returns:
             int: A unique flight ID.
+
+        IDs are generated sequentially, starting from 1.
         """
-        # Load existing records
         records = FlightRecord.load_all()
-        # If no records exist, start with ID 1
         if not records:
             return 1
-        # Return the maximum existing ID plus one
         return max(record.get("Flight_ID", 0) for record in records) + 1
     
     @staticmethod
     def update(flight_id, updated_data):
         """
-        Update an existing flight record with validations that check the correct format of date and time.
+        Update an existing flight record with validations.
 
         Args:
             flight_id (int): The ID of the flight to update.
@@ -156,6 +153,9 @@ class FlightRecord:
 
         Returns:
             bool: True if the record was updated, False if no matching record was found.
+
+        Raises:
+            ValueError: If the date and time format is invalid.
         """
         if not FlightRecord.is_valid_date_time(updated_data["Date/Time"]):
             raise ValueError("Invalid date and time format. Use YYYY-MM-DD HH:MM.")

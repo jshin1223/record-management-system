@@ -45,6 +45,8 @@ class AirlineRecord:
 
         Args:
             records (list): A list of dictionaries representing airline records to save.
+
+        This method overwrites the existing data in the file with the provided records.
         """
         # Open the JSON file in write mode and dump the records
         with open(AIRLINE_FILE, "w") as f:
@@ -60,6 +62,8 @@ class AirlineRecord:
 
         Returns:
             bool: True if a duplicate exists, False otherwise.
+
+        This method ensures no two airlines have the same company name, irrespective of case sensitivity.
         """
         records = AirlineRecord.load_all()
         return any(record["Company Name"].lower() == company_name.lower() for record in records)
@@ -67,10 +71,13 @@ class AirlineRecord:
     @staticmethod
     def create(airline_data):
         """
-        Create a new airline record with validations that check pre-existing duplicatre records and save it.
+        Create a new airline record with validations that check for pre-existing duplicate records.
 
         Args:
             airline_data (dict): A dictionary containing airline information, including ID and company name.
+
+        Raises:
+            ValueError: If a duplicate company name is detected.
         """
         if AirlineRecord.is_duplicate_airline_name(airline_data["Company Name"]):
             raise ValueError("Duplicate airline name detected.")
@@ -92,6 +99,8 @@ class AirlineRecord:
 
         Returns:
             dict: The airline record if found, otherwise None.
+
+        This method iterates through the list of records to find a matching ID.
         """
         # Load existing records
         records = AirlineRecord.load_all()
@@ -109,6 +118,8 @@ class AirlineRecord:
 
         Returns:
             int: A unique ID for the new airline record.
+
+        This method ensures IDs are incremental and unique, starting from 1.
         """
         # Load existing records
         records = AirlineRecord.load_all()
@@ -128,6 +139,8 @@ class AirlineRecord:
 
         Returns:
             dict: The airline record if found, otherwise None.
+
+        This method performs a case-insensitive search for the given company name.
         """
         records = AirlineRecord.load_all()
         for record in records:
@@ -138,7 +151,7 @@ class AirlineRecord:
     @staticmethod
     def update_airline(airline_id, new_data):
         """
-        Update an existing airline record with validations that check pre-existing duplicate records. 
+        Update an existing airline record with validations that check for duplicate company names.
 
         Args:
             airline_id (int): The ID of the airline to update.
@@ -146,6 +159,9 @@ class AirlineRecord:
 
         Returns:
             bool: True if the record was updated, False if not found.
+
+        Raises:
+            ValueError: If the updated company name is a duplicate.
         """
         if AirlineRecord.is_duplicate_airline_name(new_data["Company Name"]):
             raise ValueError("Duplicate airline name detected.")
@@ -168,6 +184,8 @@ class AirlineRecord:
 
         Returns:
             bool: True if the record was deleted, False if not found.
+
+        This method removes the record with the specified ID from the list and saves the updated list.
         """
         records = AirlineRecord.load_all()
         updated_records = [record for record in records if record["ID"] != airline_id]
