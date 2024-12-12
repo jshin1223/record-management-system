@@ -1,15 +1,5 @@
-### Project description
-
 # Record Management System
 
-The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
-1. **Client Records**
-2. **Airline Records**
-3. **Flight Records**
-
-The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
-
----
 ### Table of Contents
 1. [Project Description](#project-description)
 2. [Installation](#installation)
@@ -18,6 +8,16 @@ The system comes with an easy-to-use Graphical User Interface (GUI) to add, modi
 5. [Current Features](#current-features)
 6. [Contributors](#contributors)
 7. [License](#license)
+
+---
+### Project description
+
+The Record Management System is a Python-based desktop application designed for a specialist travel agency to manage three types of records:
+1. **Client Records**
+2. **Airline Records**
+3. **Flight Records**
+
+The system comes with an easy-to-use Graphical User Interface (GUI) to add, modify, search and remove records.
 
 ---
 ### Installation
@@ -69,6 +69,9 @@ The Record Management System provides the following capabilities:
 - **Persistent Storage**:
   - All data is saved in JSON files within the `data` folder.
   - Existing records are automatically loaded when the application starts.
+
+- **Unit Tests**
+  - There are three unit test files that check functions in client, airline, and flight records. 
 
 ---
 ### Contributors
